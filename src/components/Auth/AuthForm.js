@@ -1,8 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 
 import classes from './AuthForm.module.css';
+import AuthContext from '../../store/auth-context';
 
 const AuthForm = () => {
+  const authCtx = useContext(AuthContext);
+
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -48,20 +51,18 @@ const AuthForm = () => {
 
       const data = await response.json();
 
- if (!response.ok) {
-  throw new Error(data.error.message || 'Authentication failed');
-}
+      if (!response.ok) {
+        throw new Error(data.error.message || 'Authentication failed');
+      }
 
-console.log('TOKEN:', data.idToken);
+      console.log('TOKEN:', data.idToken);
 
-localStorage.setItem('token', data.idToken);
+      authCtx.login(data.idToken);
 
-alert('Authentication Successful!');
-
-      console.log(data);
       alert('Authentication Successful!');
     } catch (err) {
       setError(err.message);
+      alert('Authentication failed');
     }
 
     setIsLoading(false);
