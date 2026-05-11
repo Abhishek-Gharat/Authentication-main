@@ -15,7 +15,7 @@ const MainNavigation = () => {
   const logoutHandler = () => {
     authCtx.logout();
 
-    history.replace('/auth');
+    history.replace('/');
   };
 
   return (
@@ -26,6 +26,18 @@ const MainNavigation = () => {
 
       <nav>
         <ul>
+          <li>
+            <NavLink to='/' exact>
+              Home
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to='/about'>
+              About
+            </NavLink>
+          </li>
+
           {!authCtx.isLoggedIn && (
             <li>
               <NavLink to='/auth'>Login</NavLink>
@@ -34,6 +46,12 @@ const MainNavigation = () => {
 
           {authCtx.isLoggedIn && (
             <Fragment>
+              <li>
+                <NavLink to='/products'>
+                  Products
+                </NavLink>
+              </li>
+
               <li>
                 <NavLink to='/profile'>
                   Profile

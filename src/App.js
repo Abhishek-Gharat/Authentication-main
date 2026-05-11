@@ -5,6 +5,8 @@ import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import AboutPage from './pages/AboutPage';
 import AuthContext from './store/auth-context';
 
 function App() {
@@ -17,6 +19,10 @@ function App() {
           <HomePage />
         </Route>
 
+        <Route path='/about'>
+          <AboutPage />
+        </Route>
+
         {!authCtx.isLoggedIn && (
           <Route path='/auth'>
             <AuthPage />
@@ -26,6 +32,12 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path='/profile'>
             <UserProfile />
+          </Route>
+        )}
+
+        {authCtx.isLoggedIn && (
+          <Route path='/products'>
+            <ProductsPage />
           </Route>
         )}
 

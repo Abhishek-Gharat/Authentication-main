@@ -70,3 +70,12 @@
   background-color: transparent;
   color: #ae82cc;
 }
+
+.error {
+  color: #ffb3b3;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #ff6b6b;
+}

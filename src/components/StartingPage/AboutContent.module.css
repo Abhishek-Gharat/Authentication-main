@@ -1,0 +1,38 @@
+.about {
+  margin: 3rem auto;
+  width: 95%;
+  max-width: 60rem;
+  border-radius: 6px;
+  background-color: #f1e1fc;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+
+.about h1 {
+  text-align: center;
+  color: #38015c;
+  margin-bottom: 1.5rem;
+}
+
+.about h2 {
+  color: #38015c;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.about p {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.about ul {
+  color: #333;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}

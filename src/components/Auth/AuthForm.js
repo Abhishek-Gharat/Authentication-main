@@ -1,21 +1,18 @@
 import { useState, useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import classes from './AuthForm.module.css';
 import AuthContext from '../../store/auth-context';
 
 const AuthForm = () => {
   const authCtx = useContext(AuthContext);
+  const history = useHistory();
 
-  const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
-  const switchAuthModeHandler = () => {
-    setIsLogin((prevState) => !prevState);
-  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -25,18 +22,9 @@ const AuthForm = () => {
 
     setIsLoading(true);
     setError('');
-  const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
-    
+    const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
 
-    let url;
-
-  if (isLogin) {
-  url =
-    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
-} else {
-  url =
-    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
-}
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 
     try {
       const response = await fetch(url, {
@@ -61,10 +49,10 @@ const AuthForm = () => {
 
       authCtx.login(data.idToken);
 
-      alert('Authentication Successful!');
+      // Redirect to products page after successful login
+      history.replace('/products');
     } catch (err) {
       setError(err.message);
-      alert('Authentication failed');
     }
 
     setIsLoading(false);
@@ -72,7 +60,7 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      <h1>Login</h1>
 
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
@@ -97,26 +85,16 @@ const AuthForm = () => {
           />
         </div>
 
+        {error && <p className={classes.error}>{error}</p>}
+
         <div className={classes.actions}>
           {!isLoading && (
             <button>
-              {isLogin ? 'Login' : 'Create Account'}
+              Login
             </button>
           )}
 
           {isLoading && <p>Sending request...</p>}
-
-          {error && <p>{error}</p>}
-
-          <button
-            type='button'
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin
-              ? 'Create new account'
-              : 'Login with existing account'}
-          </button>
         </div>
       </form>
     </section>
