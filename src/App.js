@@ -29,6 +29,12 @@ function App() {
           </Route>
         )}
 
+        {!authCtx.isLoggedIn && (
+          <Route path='/products'>
+            <Redirect to='/auth' />
+          </Route>
+        )}
+
         {authCtx.isLoggedIn && (
           <Route path='/profile'>
             <UserProfile />
