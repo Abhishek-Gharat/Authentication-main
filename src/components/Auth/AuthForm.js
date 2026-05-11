@@ -25,16 +25,18 @@ const AuthForm = () => {
 
     setIsLoading(true);
     setError('');
+  const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+    
 
     let url;
 
-    if (isLogin) {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBrMMuK0mQNNUaC38v-_DIQNX71n63kx_4';
-    } else {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBrMMuK0mQNNUaC38v-_DIQNX71n63kx_4';
-    }
+  if (isLogin) {
+  url =
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+} else {
+  url =
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+}
 
     try {
       const response = await fetch(url, {
