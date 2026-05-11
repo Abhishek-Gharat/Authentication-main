@@ -1,5 +1,8 @@
 import { Fragment, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import {
+  NavLink,
+  useHistory,
+} from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
 import AuthContext from '../../store/auth-context';
@@ -7,8 +10,12 @@ import AuthContext from '../../store/auth-context';
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
 
+  const history = useHistory();
+
   const logoutHandler = () => {
     authCtx.logout();
+
+    history.replace('/auth');
   };
 
   return (
@@ -28,7 +35,9 @@ const MainNavigation = () => {
           {authCtx.isLoggedIn && (
             <Fragment>
               <li>
-                <NavLink to='/profile'>Profile</NavLink>
+                <NavLink to='/profile'>
+                  Profile
+                </NavLink>
               </li>
 
               <li>
