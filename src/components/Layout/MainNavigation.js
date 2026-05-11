@@ -53,6 +53,12 @@ const MainNavigation = () => {
               </li>
 
               <li>
+                <NavLink to='/cart'>
+                  Cart
+                </NavLink>
+              </li>
+
+              <li>
                 <NavLink to='/profile'>
                   Profile
                 </NavLink>

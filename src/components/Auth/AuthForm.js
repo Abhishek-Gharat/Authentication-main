@@ -47,7 +47,7 @@ const AuthForm = () => {
 
       console.log('TOKEN:', data.idToken);
 
-      authCtx.login(data.idToken);
+      authCtx.login(data.idToken, enteredEmail);
 
       // Redirect to products page after successful login
       history.replace('/products');

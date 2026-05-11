@@ -7,6 +7,7 @@ import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import AboutPage from './pages/AboutPage';
+import CartPage from './pages/CartPage';
 import AuthContext from './store/auth-context';
 
 function App() {
@@ -35,6 +36,12 @@ function App() {
           </Route>
         )}
 
+        {!authCtx.isLoggedIn && (
+          <Route path='/cart'>
+            <Redirect to='/auth' />
+          </Route>
+        )}
+
         {authCtx.isLoggedIn && (
           <Route path='/profile'>
             <UserProfile />
@@ -44,6 +51,12 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path='/products'>
             <ProductsPage />
+          </Route>
+        )}
+
+        {authCtx.isLoggedIn && (
+          <Route path='/cart'>
+            <CartPage />
           </Route>
         )}
 

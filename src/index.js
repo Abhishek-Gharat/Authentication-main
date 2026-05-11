@@ -24,6 +24,7 @@ const calculateRemainingTime = (expirationTime) => {
 
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem('token');
+  const storedEmail = localStorage.getItem('email');
 
   const storedExpirationTime =
     localStorage.getItem('expirationTime');
@@ -35,6 +36,7 @@ const retrieveStoredToken = () => {
 
   if (remainingTime <= 0) {
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
 
     localStorage.removeItem(
       'expirationTime'
@@ -45,6 +47,7 @@ const retrieveStoredToken = () => {
 
   return {
     token: storedToken,
+    email: storedEmail,
     duration: remainingTime,
   };
 };
@@ -53,13 +56,18 @@ const tokenData = retrieveStoredToken();
 
 const MainApp = () => {
   let initialToken;
+  let initialEmail;
 
   if (tokenData) {
     initialToken = tokenData.token;
+    initialEmail = tokenData.email;
   }
 
   const [token, setToken] =
     useState(initialToken);
+
+  const [email, setEmail] =
+    useState(initialEmail);
 
   const userIsLoggedIn = !!token;
 
@@ -104,12 +112,18 @@ const MainApp = () => {
     validateToken();
   }, [token]);
 
-  const loginHandler = (token) => {
+  const loginHandler = (token, userEmail) => {
     setToken(token);
+    setEmail(userEmail);
 
     localStorage.setItem(
       'token',
       token
+    );
+
+    localStorage.setItem(
+      'email',
+      userEmail
     );
 
     const expirationTime = new Date(
@@ -125,9 +139,14 @@ const MainApp = () => {
 
   const logoutHandler = () => {
     setToken(null);
+    setEmail(null);
 
     localStorage.removeItem(
       'token'
+    );
+
+    localStorage.removeItem(
+      'email'
     );
 
     localStorage.removeItem(
@@ -137,6 +156,7 @@ const MainApp = () => {
 
   const contextValue = {
     token: token,
+    email: email,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
