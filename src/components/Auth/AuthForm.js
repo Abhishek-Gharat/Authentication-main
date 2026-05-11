@@ -8,11 +8,17 @@ const AuthForm = () => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
 
+  const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+    setError('');
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -24,7 +30,13 @@ const AuthForm = () => {
     setError('');
     const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
 
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+    let url;
+
+    if (isLogin) {
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+    } else {
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+    }
 
     try {
       const response = await fetch(url, {
@@ -49,7 +61,7 @@ const AuthForm = () => {
 
       authCtx.login(data.idToken, enteredEmail);
 
-      // Redirect to products page after successful login
+      // Redirect to products page after successful login/signup
       history.replace('/products');
     } catch (err) {
       setError(err.message);
@@ -60,7 +72,7 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>Login</h1>
+      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
 
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
@@ -90,11 +102,21 @@ const AuthForm = () => {
         <div className={classes.actions}>
           {!isLoading && (
             <button>
-              Login
+              {isLogin ? 'Login' : 'Create Account'}
             </button>
           )}
 
           {isLoading && <p>Sending request...</p>}
+
+          <button
+            type='button'
+            className={classes.toggle}
+            onClick={switchAuthModeHandler}
+          >
+            {isLogin
+              ? 'Create new account'
+              : 'Login with existing account'}
+          </button>
         </div>
       </form>
     </section>
