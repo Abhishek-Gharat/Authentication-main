@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_complete_guide=self.webpackChunkreact_complete_guide||[]).push([[602],{602(e,t,c){c.r(t),c.d(t,{default:()=>r});const s="StartingPageContent_starting__0SqqX";var a=c(579);const n=()=>(0,a.jsx)("section",{className:s,children:(0,a.jsx)("h1",{children:"Welcome on Board!"})}),r=()=>(0,a.jsx)(n,{})}}]);
+//# sourceMappingURL=602.2e94c5d6.chunk.js.map

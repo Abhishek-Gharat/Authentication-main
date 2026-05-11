@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/602.db4c8f42.chunk.css","mappings":"AAAA,qCACE,gBAAiB,CACjB,iBACF,CAEA,wCACE,cACF","sources":["components/StartingPage/StartingPageContent.module.css"],"sourcesContent":[".starting {\n  margin: 3rem auto;\n  text-align: center;\n}\n\n.starting h1 {\n  font-size: 5rem;\n}"],"names":[],"sourceRoot":""}
