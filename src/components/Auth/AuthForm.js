@@ -48,9 +48,15 @@ const AuthForm = () => {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error.message || 'Authentication failed');
-      }
+ if (!response.ok) {
+  throw new Error(data.error.message || 'Authentication failed');
+}
+
+console.log('TOKEN:', data.idToken);
+
+localStorage.setItem('token', data.idToken);
+
+alert('Authentication Successful!');
 
       console.log(data);
       alert('Authentication Successful!');
