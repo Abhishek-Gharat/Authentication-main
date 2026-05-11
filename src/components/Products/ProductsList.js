@@ -56,7 +56,7 @@ const ProductsList = () => {
       setSuccessMessage('');
 
       const cleanedEmail = cleanEmailForAPI(authCtx.email);
-      const apiUrl = `https://crudcrud.com/api/YOUR_UNIQUE_ID/cart${cleanedEmail}`;
+      const apiUrl = `https://crudcrud.com/api/b9b55c33963e45c5971d6aee4292a724/cart${cleanedEmail}`;
 
       const response = await fetch(apiUrl, {
         method: 'POST',
