@@ -29,8 +29,7 @@ const Cart = () => {
       setError('');
 
       const cleanedEmail = cleanEmailForAPI(authCtx.email);
-      const apiUrl = `https://crudcrud.com/api/dacd659f75754c6f92765a0702d8bed8/cart${cleanedEmail}`;
-
+const apiUrl = `https://crudcrud.com/api/dacd659f75754c6f92765a0702d8bed8/cart-${cleanedEmail}`;
       const response = await fetch(apiUrl);
 
       if (!response.ok) {
