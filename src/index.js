@@ -127,7 +127,7 @@ const MainApp = () => {
     );
 
     const expirationTime = new Date(
-       new Date().getTime() + 30 * 1000
+       new Date().getTime() + 5 * 60 * 1000
 
     );
 

@@ -29,7 +29,7 @@ const Cart = () => {
       setError('');
 
       const cleanedEmail = cleanEmailForAPI(authCtx.email);
-      const apiUrl = `https://crudcrud.com/api/b9b55c33963e45c5971d6aee4292a724/cart${cleanedEmail}`;
+      const apiUrl = `https://crudcrud.com/api/dacd659f75754c6f92765a0702d8bed8/cart${cleanedEmail}`;
 
       const response = await fetch(apiUrl);
 
@@ -63,7 +63,7 @@ const Cart = () => {
       setDeletingId(itemId);
 
       const cleanedEmail = cleanEmailForAPI(authCtx.email);
-      const apiUrl = `https://crudcrud.com/api/b9b55c33963e45c5971d6aee4292a724/cart${cleanedEmail}/${itemId}`;
+      const apiUrl = `https://crudcrud.com/api/dacd659f75754c6f92765a0702d8bed8/cart${cleanedEmail}/${itemId}`;
 
       const response = await fetch(apiUrl, {
         method: 'DELETE',
